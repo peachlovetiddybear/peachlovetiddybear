@@ -3,7 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML Table Example</title>
+    <title><!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Moving Text Example</title>
+        <style>
+            .moving-text {
+                position: relative;
+                animation: moveText 5s linear infinite; /* Adjust the duration and timing function as needed */
+            }
+        
+            @keyframes moveText {
+                0% {
+                    left: 0;
+                }
+                100% {
+                    left: calc(100% - 100px); /* Adjust the distance to move */
+                }
+            }
+        </style>
+        </head>
+        <body>
+            <h1 class="moving-text">This text is moving </title>
     <style>
         table {
             width: 100%;
