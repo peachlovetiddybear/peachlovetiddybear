@@ -1,33 +1,75 @@
-
-</html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Colorful Moving Text Example</title>
-<style>
-    .moving-text {
-        position: relative;
-        animation: moveText 5s linear infinite; /* Adjust the duration and timing function as needed */
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moving Text and HTML Table Example</title>
+    <style>
+        .moving-text {
+            position: relative;
+            animation: moveText 5s linear infinite; /* Adjust the duration and timing function as needed */
+            color: blue; /* Text color */
+        }
 
-    @keyframes moveText {
-        0% {
-            left: 0;
-            color: red; /* Start color */
+        @keyframes moveText {
+            0% {
+                left: 0;
+            }
+            100% {
+                left: calc(100% - 100px); /* Adjust the distance to move */
+            }
         }
-        50% {
-            color: blue; /* Middle color */
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
         }
-        100% {
-            left: calc(100% - 100px); /* Adjust the distance to move */
-            color: green; /* End color */
+        th, td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
         }
-    }
-</style>
+        th {
+            background-color: #f2f2f2;
+            color: white; /* Text color */
+            background-color: #4CAF50; /* Header background color */
+        }
+        td {
+            background-color: #f9f9f9; /* Cell background color */
+        }
+    </style>
 </head>
 <body>
-    <h1 class="moving-text">This text is moving horizontally and changing color</h1>
-</body>
-</html>
+    <h1 class="moving-text">Family Info</h1>
+    <h2>HTML Table Example</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Age</th>
+                <th>ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Palin</td>
+                <td>Werapun</td>
+                <td>11</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>Pincha</td>
+                <td>Werapun</td>
+                <td>12</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>Warodom</td>
+                <td>Werapun</td>
+                <td>45</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>Warodom</td>
+   
+
