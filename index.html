@@ -139,6 +139,57 @@ function openInNewTab() {
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select and Send Image</title>
+</head>
+<body>
+
+<h2>Select an Image</h2>
+
+<input type="file" id="fileInput" accept="image/*">
+<button id="sendButton">Send Image</button>
+
+<div id="imageContainer"></div>
+
+<script>
+    const fileInput = document.getElementById('fileInput');
+    const sendButton = document.getElementById('sendButton');
+    const imageContainer = document.getElementById('imageContainer');
+
+    sendButton.addEventListener('click', function() {
+        const file = fileInput.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const imageUrl = event.target.result;
+                const img = new Image();
+                img.src = imageUrl;
+                img.alt = 'Selected Image';
+                img.width = 300; // Adjust as needed
+                imageContainer.innerHTML = ''; // Clear previous content
+                imageContainer.appendChild(img);
+                sendEmail(imageUrl);
+            };
+            reader.readAsDataURL(file);
+        } else {
+            alert('Please select an image.');
+        }
+    });
+
+    function sendEmail(imageUrl) {
+        const subject = 'Image from Web Page';
+        const body = `Here's the image:\n${imageUrl}`;
+        const mailtoLink = `mailto:your-email@example.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = mailtoLink;
+    }
+</script>
+
+</body>
+</html>
 
 
 
