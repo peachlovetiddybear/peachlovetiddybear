@@ -144,52 +144,43 @@ function openInNewTab() {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Select and Send Image</title>
+    <title>Uploaded Image</title>
 </head>
 <body>
 
-<h2>Select an Image</h2>
-
-<input type="file" id="fileInput" accept="image/*">
-<button id="sendButton">Send Image</button>
+<h2>Uploaded Image</h2>
 
 <div id="imageContainer"></div>
 
 <script>
-    const fileInput = document.getElementById('fileInput');
-    const sendButton = document.getElementById('sendButton');
-    const imageContainer = document.getElementById('imageContainer');
-
-    sendButton.addEventListener('click', function() {
-        const file = fileInput.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                const imageUrl = event.target.result;
+    window.onload = function() {
+        // Fetch the uploaded image
+        fetch('uploads/uploaded_image.jpg') // Adjust the path to the uploaded image as needed
+            .then(response => {
+                if (response.ok) {
+                    return response.blob();
+                } else {
+                    throw new Error('Failed to fetch image');
+                }
+            })
+            .then(blob => {
+                const imageUrl = URL.createObjectURL(blob);
                 const img = new Image();
                 img.src = imageUrl;
-                img.alt = 'Selected Image';
+                img.alt = 'Uploaded Image';
                 img.width = 300; // Adjust as needed
-                imageContainer.innerHTML = ''; // Clear previous content
-                imageContainer.appendChild(img);
-                sendEmail(imageUrl);
-            };
-            reader.readAsDataURL(file);
-        } else {
-            alert('Please select an image.');
-        }
-    });
-
-    function sendEmail(imageUrl) {
-        const subject = 'Image from Web Page';
-        const body = `Here's the image:\n${imageUrl}`;
-        const mailtoLink = `mailto:your-email@example.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        window.location.href = mailtoLink;
-    }
+                document.getElementById('imageContainer').appendChild(img);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('imageContainer').textContent = 'Failed to fetch image';
+            });
+    };
 </script>
 
 </body>
 </html>
+
 
 
 
