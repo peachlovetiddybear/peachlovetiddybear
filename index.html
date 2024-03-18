@@ -139,6 +139,37 @@ function openInNewTab() {
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moving and Shaking Red Heart</title>
+    <style>
+        .red-heart {
+            color: red; /* Set the color to red */
+            font-size: 24px; /* Adjust the font size as needed */
+            position: relative; /* Set position to relative for animation */
+            animation: shake 0.5s infinite alternate; /* Apply animation */
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(-5px) rotate(0deg); }
+            25% { transform: translateX(5px) rotate(-5deg); }
+            50% { transform: translateX(-5px) rotate(5deg); }
+            75% { transform: translateX(5px) rotate(-5deg); }
+            100% { transform: translateX(-5px) rotate(0deg); }
+        }
+    </style>
+</head>
+<body>
+
+<h2>Welcome to the Page with a Moving and Shaking Red Heart</h2>
+
+<p>This is a paragraph with a moving and shaking red heart: <span class="red-heart">&#10084;&#65039;</span></p>
+
+</body>
+</html>
 
 
 
