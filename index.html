@@ -139,6 +139,26 @@ function openInNewTab() {
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select and Display Image</title>
+</head>
+<body>
+
+<h2>Select an Image</h2>
+
+<input type="file" id="fileInput" accept="image/*">
+<div id="imageContainer"></div>
+
+<script>
+    const fileInput = document.getElementById('fileInput');
+    const imageContainer = document.getElementById('imageContainer');
+
+    fileInput.addEventListener('change', function(event) {
+        const file = 
 
 
 
