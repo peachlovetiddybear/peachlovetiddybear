@@ -144,47 +144,68 @@ function openInNewTab() {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shaking Hearts Everywhere</title>
+    <title>Falling Hearts from Corners</title>
     <style>
-        /* Define the shaking animation */
-        @keyframes shake {
-            0% { transform: translate(-5px, -5px) rotate(0deg); }
-            25% { transform: translate(5px, 5px) rotate(-5deg); }
-            50% { transform: translate(-5px, -5px) rotate(5deg); }
-            75% { transform: translate(5px, 5px) rotate(-5deg); }
-            100% { transform: translate(-5px, -5px) rotate(0deg); }
+        /* Define the falling animation */
+        @keyframes fall {
+            0% { top: -10%; opacity: 0; }
+            100% { top: 100%; opacity: 1; }
         }
 
         /* Style for the heart */
         .red-heart {
             color: red; /* Set the color to red */
             font-size: 24px; /* Adjust the font size as needed */
-            position: absolute; /* Position absolutely for scattering */
-            animation: shake 0.5s infinite alternate; /* Apply animation */
+            position: absolute; /* Position absolutely for falling */
+            animation: fall 5s linear infinite; /* Apply animation */
+        }
+
+        /* Style for hearts falling from the left corner */
+        .left-heart {
+            left: 10px; /* Adjust to position hearts from the left corner */
+        }
+
+        /* Style for hearts falling from the right corner */
+        .right-heart {
+            right: 10px; /* Adjust to position hearts from the right corner */
         }
     </style>
 </head>
 <body>
 
 <script>
-    // Function to generate a random number within a range
-    function getRandomNumber(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-
     // Function to create and scatter hearts on the page
     function scatterHearts() {
         // Number of hearts to scatter
-        const numHearts = 50;
-        
-        // Get the dimensions of the window
-        const windowWidth = window.innerWidth;
-        const windowHeight = window.innerHeight;
-        
+        const numHearts = 25;
+
         // Create and append hearts to the body
         for (let i = 0; i < numHearts; i++) {
             // Create a heart element
-            const heart = document.cre
+            const heart = document.createElement('span');
+            heart.innerHTML = '&#10084;&#65039;'; // Heart emoji
+            heart.classList.add('red-heart');
+
+            // Randomize whether the heart falls from left or right corner
+            if (Math.random() < 0.5) {
+                heart.classList.add('left-heart');
+            } else {
+                heart.classList.add('right-heart');
+            }
+
+            // Append the heart to the body
+            document.body.appendChild(heart);
+        }
+    }
+
+    // Call the function to scatter hearts when the page loads
+    window.onload = function() {
+        scatterHearts();
+    };
+</script>
+
+</body>
+</html>
 
 
 
