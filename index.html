@@ -144,13 +144,13 @@ function openInNewTab() {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moving and Shaking Red Heart</title>
+    <title>50 Hearts Everywhere</title>
     <style>
-        .red-heart {
-            color: red; /* Set the color to red */
-            font-size: 24px; /* Adjust the font size as needed */
-            position: relative; /* Set position to relative for animation */
-            animation: shake 0.5s infinite alternate; /* Apply animation */
+        .heart {
+            color: red;
+            font-size: 24px;
+            position: absolute;
+            animation: shake 0.5s infinite alternate;
         }
 
         @keyframes shake {
@@ -164,12 +164,38 @@ function openInNewTab() {
 </head>
 <body>
 
-<h2>Welcome to the Page with a Moving and Shaking Red Heart</h2>
+<script>
+    // Function to generate random number between min and max (inclusive)
+    function random(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
 
-<p>This is a paragraph with a moving and shaking red heart: <span class="red-heart">&#10084;&#65039;</span></p>
+    // Function to create a heart element
+    function createHeart() {
+        const heart = document.createElement('span');
+        heart.classList.add('heart');
+        heart.innerHTML = '&#10084;&#65039;';
+        document.body.appendChild(heart);
+
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+
+        // Set random position for the heart
+        const randomX = random(0, screenWidth - 30); // Adjust 30 based on heart size
+        const randomY = random(0, screenHeight - 30); // Adjust 30 based on heart size
+        heart.style.left = randomX + 'px';
+        heart.style.top = randomY + 'px';
+    }
+
+    // Create 50 hearts
+    for (let i = 0; i < 50; i++) {
+        createHeart();
+    }
+</script>
 
 </body>
 </html>
+
 
 
 
