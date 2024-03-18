@@ -144,42 +144,23 @@ function openInNewTab() {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uploaded Image</title>
+    <title>Home Page</title>
 </head>
 <body>
 
-<h2>Uploaded Image</h2>
+<h2>Welcome to the Home Page</h2>
 
-<div id="imageContainer"></div>
+<button onclick="redirectToNewPage()">Go to New Page</button>
 
 <script>
-    window.onload = function() {
-        // Fetch the uploaded image
-        fetch('uploads/uploaded_image.jpg') // Adjust the path to the uploaded image as needed
-            .then(response => {
-                if (response.ok) {
-                    return response.blob();
-                } else {
-                    throw new Error('Failed to fetch image');
-                }
-            })
-            .then(blob => {
-                const imageUrl = URL.createObjectURL(blob);
-                const img = new Image();
-                img.src = imageUrl;
-                img.alt = 'Uploaded Image';
-                img.width = 300; // Adjust as needed
-                document.getElementById('imageContainer').appendChild(img);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                document.getElementById('imageContainer').textContent = 'Failed to fetch image';
-            });
-    };
+    function redirectToNewPage() {
+        window.location.href = 'newpage.html'; // Redirect to the new page (newpage.html)
+    }
 </script>
 
 </body>
 </html>
+
 
 
 
