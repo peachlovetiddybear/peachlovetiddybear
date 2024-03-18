@@ -88,16 +88,20 @@
 </head>
 <body>
 
-<button onclick="redirectToPage()">My friend review about me</button>
+<button onclick="openInNewTab()">Click Me to Redirect</button>
 
 <script>
-function redirectToPage() {
+function openInNewTab() {
     // Change the URL to the desired page
-    window.location.href = "https://docs.google.com/spreadsheets/d/1PwseXHUydwcTsSomhuA9gVxY4GZ1aSmh130Ly55HBmc/edit?resourcekey#gid=196677813";
+    var url = "https://docs.google.com/spreadsheets/d/1PwseXHUydwcTsSomhuA9gVxY4GZ1aSmh130Ly55HBmc/edit?resourcekey#gid=196677813";
+    // Open the URL in a new tab
+    window.open(url, "_blank");
 }
 </script>
+
 </body>
 </html>
+
 <a href="https://example.com" target="_blank" onclick="window.open('https://www.youtube.com/watch?v=xvFZjo5PgG0'); return false;">Click Here to View Cute Kittens</a>
 
 
