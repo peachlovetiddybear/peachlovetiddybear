@@ -144,21 +144,14 @@ function openInNewTab() {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Select and Display Image</title>
+    <title>Select and Upload Image</title>
 </head>
 <body>
 
 <h2>Select an Image</h2>
 
-<input type="file" id="fileInput" accept="image/*">
-<div id="imageContainer"></div>
+<form id="uploadForm" enctype="multipart/form-data" method="post" action
 
-<script>
-    const fileInput = document.getElementById('fileInput');
-    const imageContainer = document.getElementById('imageContainer');
-
-    fileInput.addEventListener('change', function(event) {
-        const file = 
 
 
 
