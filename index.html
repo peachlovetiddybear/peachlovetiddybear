@@ -211,51 +211,23 @@ function openInNewTab() {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Save Uploaded Image URL in Cookies</title>
+    <title>Save Selected Image URL in Cookies</title>
 </head>
 <body>
 
-<h2>Upload and Save Image URL in Cookies</h2>
+<h2>Save Selected Image URL in Cookies</h2>
 
-<input type="file" id="imageUploadInput">
-<button onclick="uploadAndSaveImage()">Upload and Save Image</button>
+<!-- Button to trigger file selection dialog -->
+<button onclick="selectImage()">Select Image</button>
 
 <script>
-    function uploadAndSaveImage() {
-        // Get the input element for uploading images
-        const input = document.getElementById('imageUploadInput');
+    function selectImage() {
+        // Create a hidden input element of type "file"
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'image/*'; // Accept only image files
+        input
 
-        // Check if a file is selected
-        if (input.files && input.files[0]) {
-            // Get the selected file (image)
-            const image = input.files[0];
-
-            // Create a FileReader to read the selected file
-            const reader = new FileReader();
-
-            // Define a function to be executed when the file is read
-            reader.onload = function(e) {
-                // Get the URL of the uploaded image
-                const imageUrl = e.target.result;
-
-                // Save the image URL in a cookie named "imageURL"
-                document.cookie = `imageURL=${imageUrl}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
-
-                // Inform the user that the image URL is saved
-                alert('Image URL saved in cookies!');
-            };
-
-            // Read the selected file as a Data URL (base64-encoded string)
-            reader.readAsDataURL(image);
-        } else {
-            // Inform the user to select an image
-            alert('Please select an image.');
-        }
-    }
-</script>
-
-</body>
-</html>
 
 
 
