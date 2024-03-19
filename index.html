@@ -211,76 +211,50 @@ function openInNewTab() {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Display Selected Image</title>
+    <title>Save Image URL in Cookies</title>
 </head>
 <body>
 
-<h2>Display Selected Image</h2>
+<h2>Save Image URL in Cookies</h2>
 
-<!-- Button to trigger file selection dialog -->
-<button onclick="selectImage()">Select Image</button>
-
-<!-- Image element to display the selected image -->
-<img id="selectedImage" style="display: none; max-width: 100%;">
+<input type="file" id="imageUploadInput">
+<button onclick="uploadAndSaveImage()">Upload and Save Image</button>
 
 <script>
-    function selectImage() {
-        // Create a hidden input element of type "file"
-        const input = document.createElement('input');
-        input.type = 'file';
-        input.accept = 'image/*'; // Accept only image files
-        input.style.display = 'none'; // Hide the input element
+    function uploadAndSaveImage() {
+        // Get the input element for uploading images
+        const input = document.getElementById('imageUploadInput');
 
-        // Add event listener for when a file is selected
-        input.addEventListener('change', function() {
-            const file = input.files[0]; // Get the selected file
+        // Check if a file is selected
+        if (input.files && input.files[0]) {
+            // Get the selected file (image)
+            const image = input.files[0];
 
             // Create a FileReader to read the selected file
             const reader = new FileReader();
 
             // Define a function to be executed when the file is read
             reader.onload = function(e) {
-                const imageUrl = e.target.result; // Get the URL of the selected image
+                const imageUrl = e.target.result; // Get the URL of the uploaded image
 
                 // Save the image URL in a cookie named "imageURL"
                 document.cookie = `imageURL=${imageUrl}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
 
                 // Inform the user that the image URL is saved
                 alert('Image URL saved in cookies!');
-
-                // Display the selected image
-                displayImage(imageUrl);
             };
 
             // Read the selected file as a Data URL (base64-encoded string)
-            reader.readAsDataURL(file);
-
-            // Remove the hidden input element from the DOM
-            document.body.removeChild(input);
-        });
-
-        // Append the input element to the body to trigger file selection dialog
-        document.body.appendChild(input);
-
-        // Trigger click event on the input element to open file selection dialog
-        input.click();
-    }
-
-    function displayImage(imageUrl) {
-        // Get the image element
-        const img = document.getElementById('selectedImage');
-
-        // Set the src attribute of the image element to the image URL
-        img.src = imageUrl;
-
-        // Make the image element visible
-        img.style.display = 'block';
+            reader.readAsDataURL(image);
+        } else {
+            // Inform the user to select an image
+            alert('Please select an image.');
+        }
     }
 </script>
 
 </body>
 </html>
-
 
 
 
