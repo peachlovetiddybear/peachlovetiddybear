@@ -211,54 +211,76 @@ function openInNewTab() {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Display Image from Cookies</title>
+    <title>Display Selected Image</title>
 </head>
 <body>
 
-<h2>Display Image from Cookies</h2>
+<h2>Display Selected Image</h2>
+
+<!-- Button to trigger file selection dialog -->
+<button onclick="selectImage()">Select Image</button>
 
 <!-- Image element to display the selected image -->
-<img id="selectedImage" style="max-width: 100%;">
+<img id="selectedImage" style="display: none; max-width: 100%;">
 
 <script>
-    // Function to get the value of a cookie by its name
-    function getCookie(name) {
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
-            if (cookie.startsWith(name + '=')) {
-                return cookie.substring(name.length + 1);
-            }
-        }
-        return null;
+    function selectImage() {
+        // Create a hidden input element of type "file"
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'image/*'; // Accept only image files
+        input.style.display = 'none'; // Hide the input element
+
+        // Add event listener for when a file is selected
+        input.addEventListener('change', function() {
+            const file = input.files[0]; // Get the selected file
+
+            // Create a FileReader to read the selected file
+            const reader = new FileReader();
+
+            // Define a function to be executed when the file is read
+            reader.onload = function(e) {
+                const imageUrl = e.target.result; // Get the URL of the selected image
+
+                // Save the image URL in a cookie named "imageURL"
+                document.cookie = `imageURL=${imageUrl}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
+
+                // Inform the user that the image URL is saved
+                alert('Image URL saved in cookies!');
+
+                // Display the selected image
+                displayImage(imageUrl);
+            };
+
+            // Read the selected file as a Data URL (base64-encoded string)
+            reader.readAsDataURL(file);
+
+            // Remove the hidden input element from the DOM
+            document.body.removeChild(input);
+        });
+
+        // Append the input element to the body to trigger file selection dialog
+        document.body.appendChild(input);
+
+        // Trigger click event on the input element to open file selection dialog
+        input.click();
     }
 
-    // Function to display the image from the cookie
-    function displayImageFromCookie() {
-        // Get the image URL from the cookie
-        const imageUrl = getCookie('imageURL');
+    function displayImage(imageUrl) {
+        // Get the image element
+        const img = document.getElementById('selectedImage');
 
-        // Check if the image URL is available
-        if (imageUrl) {
-            // Get the image element
-            const img = document.getElementById('selectedImage');
+        // Set the src attribute of the image element to the image URL
+        img.src = imageUrl;
 
-            // Set the src attribute of the image element to the image URL
-            img.src = imageUrl;
-        } else {
-            // Inform the user that no image URL is available
-            alert('No image URL found in cookies.');
-        }
+        // Make the image element visible
+        img.style.display = 'block';
     }
-
-    // Call the function to display the image from the cookie when the page loads
-    window.onload = function() {
-        displayImageFromCookie();
-    };
 </script>
 
 </body>
 </html>
+
 
 
 
