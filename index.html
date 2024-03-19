@@ -211,52 +211,52 @@ function openInNewTab() {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML Image Example</title>
+    <title>Save Uploaded Image URL in Cookies</title>
 </head>
 <body>
 
-<h2>HTML Image Example</h2>
+<h2>Upload and Save Image URL in Cookies</h2>
 
-<!-- Image displayed with an image tag -->
-<img src="https://example.com/cat.jpg" alt="Cat">
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Save Image URL in Cookies</title>
-</head>
-<body>
-
-<h2>Save Image URL in Cookies</h2>
-
-<input type="text" id="imageUrlInput" placeholder="Enter image URL">
-<button onclick="saveImageURL()">Save Image URL</button>
+<input type="file" id="imageUploadInput">
+<button onclick="uploadAndSaveImage()">Upload and Save Image</button>
 
 <script>
-    function saveImageURL() {
-        // Get the image URL from the input field
-        const imageUrl = document.getElementById('imageUrlInput').value;
+    function uploadAndSaveImage() {
+        // Get the input element for uploading images
+        const input = document.getElementById('imageUploadInput');
 
-        // Check if the image URL is provided
-        if (imageUrl.trim() !== '') {
-            // Save the image URL in a cookie named "imageURL"
-            document.cookie = `imageURL=${imageUrl}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
+        // Check if a file is selected
+        if (input.files && input.files[0]) {
+            // Get the selected file (image)
+            const image = input.files[0];
 
-            // Inform the user that the image URL is saved
-            alert('Image URL saved in cookies!');
+            // Create a FileReader to read the selected file
+            const reader = new FileReader();
+
+            // Define a function to be executed when the file is read
+            reader.onload = function(e) {
+                // Get the URL of the uploaded image
+                const imageUrl = e.target.result;
+
+                // Save the image URL in a cookie named "imageURL"
+                document.cookie = `imageURL=${imageUrl}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
+
+                // Inform the user that the image URL is saved
+                alert('Image URL saved in cookies!');
+            };
+
+            // Read the selected file as a Data URL (base64-encoded string)
+            reader.readAsDataURL(image);
         } else {
-            // Inform the user to provide an image URL
-            alert('Please provide an image URL.');
+            // Inform the user to select an image
+            alert('Please select an image.');
         }
     }
 </script>
 
 </body>
 </html>
+
 
 
 
