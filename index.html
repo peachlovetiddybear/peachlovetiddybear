@@ -255,6 +255,74 @@ function openInNewTab() {
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Image from Cookies</title>
+</head>
+<body>
+
+<h2>Display Image from Cookies</h2>
+
+<!-- Image element to display the selected image -->
+<img id="selectedImage" style="max-width: 100%;">
+
+<!-- Button to clear the image -->
+<button onclick="clearImage()">Clear Image</button>
+
+<script>
+    // Function to get the value of a cookie by its name
+    function getCookie(name) {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.startsWith(name + '=')) {
+                return cookie.substring(name.length + 1);
+            }
+        }
+        return null;
+    }
+
+    // Function to display the image from the cookie
+    function displayImageFromCookie() {
+        // Get the image URL from the cookie
+        const imageUrl = getCookie('imageURL');
+
+        // Check if the image URL is available
+        if (imageUrl) {
+            // Get the image element
+            const img = document.getElementById('selectedImage');
+
+            // Set the src attribute of the image element to the image URL
+            img.src = imageUrl;
+        } else {
+            // Inform the user that no image URL is available
+            alert('No image URL found in cookies.');
+        }
+    }
+
+    // Function to clear the displayed image by removing the cookie
+    function clearImage() {
+        // Remove the "imageURL" cookie
+        document.cookie = 'imageURL=; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+
+        // Clear the src attribute of the image element
+        document.getElementById('selectedImage').src = '';
+
+        // Inform the user that the image is cleared
+        alert('Image cleared.');
+    }
+
+    // Call the function to display the image from the cookie when the page loads
+    window.onload = function() {
+        displayImageFromCookie();
+    };
+</script>
+
+</body>
+</html>
 
 
 
