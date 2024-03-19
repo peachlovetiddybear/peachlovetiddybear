@@ -222,6 +222,41 @@ function openInNewTab() {
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Save Image URL in Cookies</title>
+</head>
+<body>
+
+<h2>Save Image URL in Cookies</h2>
+
+<input type="text" id="imageUrlInput" placeholder="Enter image URL">
+<button onclick="saveImageURL()">Save Image URL</button>
+
+<script>
+    function saveImageURL() {
+        // Get the image URL from the input field
+        const imageUrl = document.getElementById('imageUrlInput').value;
+
+        // Check if the image URL is provided
+        if (imageUrl.trim() !== '') {
+            // Save the image URL in a cookie named "imageURL"
+            document.cookie = `imageURL=${imageUrl}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
+
+            // Inform the user that the image URL is saved
+            alert('Image URL saved in cookies!');
+        } else {
+            // Inform the user to provide an image URL
+            alert('Please provide an image URL.');
+        }
+    }
+</script>
+
+</body>
+</html>
 
 
 
